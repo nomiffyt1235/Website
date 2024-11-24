@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himalaya Group of Schools</title>
+    <style>
+        @media screen and (max-width: 768px) 
+        {
+            .imgbanner{
+                min-width: 10px !important;
+            }
+          
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            position: relative;
+            /* width: 98vw; */
+        }
+
+        .email {
+            background-color: #071f52;
+            font-size: 14px;
+            padding: 12px;
+            color: #fff;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .email a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .email a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header and Navigation Bar */
+        header {
+            background-color: #ffffff;
+            color: #080107;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            max-height: 60px;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            margin-top: 0px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: #071f52;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            /* padding: 8px 12px; */
+            border-radius: 5px;
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        }
+
+        .navbar a:hover {
+            /* color: #ffffff; */
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 17px;
+        }
+
+
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #071f52;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #ffffff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar ul li a {
+                padding: 10px;
+            }
+
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .hamburger.active div:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .navbar .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar .hamburger.active div:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+
+        .About {
+            color: #ffffff;
+            font-size: 54px;
+            padding: 90px;
+            margin: 20px 34px 56px 34px;
+            background-image: url(img/rrees.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 56px;
+        }
+
+
+        .About h1 {
+            font-size: 562px;
+        }
+
+        .homea {
+            font-size: 16px;
+            color: #cccccc;
+        }
+
+        .welcome {
+            font-size: 28px;
+            /* Adjusted for better mobile view */
+            text-align: center;
+            margin: 20px 0;
+            color: #071f52;
+        }
+
+        hr {
+            width: 50%;
+            margin: 20px;
+            border: none;
+            border-top: 2px solid #071f52;
+        }
+
+        .hihi {
+            display: block;
+            margin: 20px auto;
+            height: auto;
+            border-radius: 10px;
+            float: right;
+            width: 100%;
+            max-width: 433px;
+            margin-right: 0;
+        }
+
+
+
+        /* Responsive Navigation Menu */
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-top: 0px;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #071f52;
+            margin: 4px 0;
+            margin-top: 0px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #ffffff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar ul li a {
+                padding: 10px;
+            }
+
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .hamburger.active div:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .navbar .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar .hamburger.active div:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        .para {
+            font-size: 18px;
+            /* Adjusted for better mobile view */
+            margin-top: 0;
+            text-align: start;
+            margin-left: 23px;
+            padding: 0;
+        }
+
+        .welcome {
+            font-size: 24px;
+            /* Adjusted for better mobile view */
+            text-align: start;
+        }
+
+        /* Loading Screen Styles */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 150px;
+            height: 150px;
+            /* opacity: 90p; */
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(280deg);
+            }
+        }
+
+        .para1 {
+            text-align: center;
+            color: #dddddd;
+            font-size: 20px;
+            /* Adjusted for better mobile view */
+            margin: 0;
+            padding: 0;
+            margin-top: 0px;
+        }
+
+        .About {
+            margin-top: 0%;
+            height: 1px;
+            padding: 90px;
+            /* font-size: 84px; */
+            padding-bottom: 473px;
+            margin-left: 1px;
+            background-image: url(img/mikayla-mallek-3iT3dnmblGE-unsplash.jpg);
+            margin-right: 1px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .About h1 {
+                margin-top: 0%;
+                margin-left: 1px;
+                height: 100px;
+                margin-right: 1px;
+                font-size: 15px;
+                width: auto;
+                padding: 100px;
+                margin-bottom: 0%;
+            }
+
+            .welcome {
+                font-size: 5px;
+                /* Adjusted for better mobile view */
+            }
+
+            .container2 {
+                overflow: hidden;
+            }
+            @media screen and (max-width: 768px) {
+              .container2 img{
+                min-width: 280px;
+              }
+            }
+            hr {
+                width: 90%;
+                margin: 20px auto;
+            }
+
+            .para {
+                font-size: 16px;
+                /* Adjusted for better mobile view */
+                color: #007BFF;
+            }
+
+            .para1 {
+                font-size: 12px;
+                text-shadow: 19px 19px 34px black;
+                /* Adjusted for better mobile view */
+            }
+
+            h2 {
+                font-size: 28px;
+                /* Adjusted for better mobile view */
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+
+            h3 {
+                font-size: 24px;
+                /* Adjusted for better mobile view */
+                margin: 10px;
+            }
+
+
+            .our-vizion,
+            .Mission {
+                width: 100%;
+                padding: 15px;
+                font-size: 18px;
+                /* Adjusted for better mobile view */
+                /* margin-bottom: 2px; */
+            }
+        }
+
+        .imghi {
+            float: right;
+            height: auto;
+            width: 50%;
+            max-width: 311px;
+            margin-top: 30px;
+            margin-right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .imghi {
+                float: left;
+                display: flex;
+                margin-left: 2px;
+                flex-direction: column;
+
+            }
+
+            .imghi {
+                height: auto;
+                width: 102px;
+            }
+        }
+
+        /* Default Styles for Vision and Mission Container */
+        .vision-mission-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 50px 0;
+            background-color: #071f52;
+            color: #cccccc;
+            padding: 54px;
+            margin-right: 94px;
+            margin-left: 94px;
+            height: 344px;
+            padding-bottom: 0px;
+        }
+
+        /* Flexbox for vision and mission */
+        .our-vizion,
+        .Mission {
+            flex: 1;
+            margin: 0 10px;
+            background-color: transparent;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .vision-mission-container {
+                flex-direction: column;
+                margin: 20px 0;
+                /* Adjust margins for mobile */
+                height: auto;
+                /* Allow height to adjust dynamically */
+            }
+
+            .our-vizion,
+            .Mission {
+                margin: 10px 0;
+                /* Adjust margins for mobile */
+                width: calc(100% - 20px);
+                /* Full width minus padding */
+            }
+
+            .Mission {
+                background-color: #071f52;
+                color: #ffffff;
+                padding: 15px;
+            }
+
+            .our-vizion h3,
+            .Mission h3 {
+                font-size: 20px;
+            }
+
+            .our-vizion p,
+            .Mission p {
+                font-size: 15px;
+            }
+        }
+
+        .btn1 {
+            align-items: center;
+            justify-content: center;
+            margin-left: 22px;
+            border: none;
+            background-color: #071f52;
+            color: #fff;
+            /* height: 23px; */
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 14px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+
+            width: 114px;
+        }
+
+        .btn1:hover {
+            padding-bottom: 15px;
+            padding-top: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 15px;
+            background-color: #ecaf29;
+            color: #080107;
+            box-shadow: 9px 8px 23px black;
+        }
+
+        .h2-h2 {
+            margin-left: 20px;
+            text-decoration: dotted;
+            text-decoration: underline;
+            /* text-decoration: 231px; */
+            text-decoration: color(srgb red green blue);
+        }
+
+        .h3-h3,
+        h3 {
+            font-size: 33px;
+            margin: 0px;
+        }
+
+        .h1122 {
+            margin-left: 24px;
+            margin-top: 173px;
+            text-decoration: underline;
+            margin-bottom: 0%;
+            color: #071f52;
+        }
+
+        .para5 {
+            margin-left: 20px;
+            margin-bottom: 4rem;
+            /* width: 111   4px; */
+
+        }
+
+        .para2 {
+            margin-left: 11px;
+        }
+        @media screen and (max-width: 768px) {
+          .para2{
+            font-size: 12px;
+            width: 362px;
+          }
+        }
+
+        .facilities {
+            padding: 60px 20px;
+            background-color: #071f52;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+
+        }
+
+        .facilities h2 {
+            font-size: 2.5em;
+            color: #3a6899;
+            margin-bottom: 40px;
+            color: #ffffff;
+            font-family: 'Lora', serif;
+        }
+
+        .facility {
+            display: inline-block;
+            width: 30%;
+            padding: 2px;
+            color: #ffffff;
+            vertical-align: top;
+
+        }
+
+        .facility i {
+            font-size: 50px;
+            color: #ecaf29;
+            margin-bottom: 20px;
+        }
+
+        .facility h3 {
+            font-size: 1.5em;
+            color: #007BFF;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-family: 'Lora', serif;
+        }
+
+        .facility p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #ffffff;
+            color: #ffffff;
+
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .facility {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .facility i {
+                color: #ffffff;
+                font-size: 40px;
+            }
+        }
+
+        .h12 {
+            font-size: 37px;
+            margin-top: 34px;
+            align-items: center;
+        }
+
+        .imgbanner {
+            height: auto;
+            max-width: 933px;
+            margin-bottom: 213px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 12px;
+            margin-bottom: 0%;
+            margin-left: 34px;
+            height: auto;
+        }
+
+        .imgbanner:hover {
+            max-width: 950px;
+            box-shadow: 2px 1px 19px black;
+        }
+
+        .h1122 {
+            margin-bottom: 0%;
+        }
+
+        @media screen and (max-width: 700px) {
+            .h1122 {
+                display: flex;
+                flex-direction: column;
+
+            }
+        }
+
+        /* Styles for the button inside #btn2 */
+        #btn2 button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #07294d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: 0.3s;
+            margin-left: 31px;
+            margin-bottom: 23px;
+            margin-top: 0px;
+        }
+
+        #btn2 button:hover {
+            background-color: #ecaf29;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 9px 9px 23px black;
+        }
+
+        .h12 {
+            margin-top: 123px;
+            margin-left: 44px;
+        }
+
+        .open1 {
+            margin-left: 34px;
+            text-decoration: underline;
+            text-decoration: color #07294d;
+
+        }
+
+        @media (max-width: 768px) {
+            .imgbanner {
+                height: auto;
+                width: 334px;
+                /* margin-right: 12px; */
+                display: flex;
+                flex-direction: column;
+                margin: 0px auto;
+
+                .container2 {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+
+        .dropbtn {
+            color: #071f52;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 12px;
+            /* border-radius: 5px; */
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            margin-top: 0px;
+
+        }
+
+        .dropbtn:hover {
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 17px;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: transparent
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+        .About h1{
+            font-size: 74px;
+            text-align: center;
+            margin: auto 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-shadow: 5px 3px 11px black;
+            margin-top: 301px;
+        }
+        .About p{
+            text-shadow: 19px 12px 11px black;
+
+        }
+        @media screen and (max-width: 768px) {
+          .About h1{
+            font-size: 37px;
+            margin-bottom: -110px;
+          }
+        }
+        .welcome1{
+            font-size: 19px;
+            margin-top: 0px;
+        }
+        @media screen and (max-width: 768px) {
+          .welcome1 p{
+            font-size: 12px;
+            margin-top: 0px;
+          }
+        }
+    </style>
+
+<body>
+    <div id="loading">
+        <img class="loader" src="img/himalaya.jfif" alt="Loading...">
+    </div>
+    <div class="email">
+        <a style="margin-top: 0%;
+            padding: 0%;" href="#">Email: Himalaya</a>
+        <a href="#">Phone: 03459499721</a>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img width="122" src="img/himalaya-removebg-preview.png" alt="[School Name] Logo">
+        </div>
+        <nav class="navbar">
+            <ul id="nav-links">
+                <li><a href="navbar for school.html">Home</a></li>
+                <li><a href="directors-message.html">Director's Message</a></li>
+                <li><a href="galy.html">Gallery</a></li>
+                <li><a href="addmisition.html">Admissions</a></li>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">About Us</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="about.html">About Us</a>
+                        <a href="News.html">News</a>
+                        <a href="Board.html">Board Marks</a>
+                        <a href="Teachers.html">Teachers</a>
+                    </div>
+                </div>
+                </li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+     <div class="About">
+        <h1> Welcome!</h1> 
+       <div class="welcome1"> <p> Himalaya Group of School & Colleges System</p>
+    </div>
+</div>
+    <!-- Removed Notice Board Section -->
+
+    <div class="container2">
+        <img class="imghi" src="img/himalaya.jfif" alt="Image Description">
+    </div>
+
+    <h2 class="h2-h2">About Us</h2>
+    <p class="para2">Himalaya Degree College of Science and Technology (HCST) started its journey in 2013 under the
+        capable and dynamic supervision of Mr. Sikandar Hayat. The objective behind this revolutionary step was to
+        impart quality education especially in the field of Science and Technology, in this
+        deprived area of KPK.
+        In initial step, HCST focused on Technical education and offered DAE Electrical, DAE Civil, short courses
+        pertaining to technical jobs such as
+        Survey, Material Testing, Land Survey, Quantity Survey, Electrical Supervisor, Optical Fiber Technician, Safety
+        Officer, and Total Station etc.
+        Setting new standards in the field of Technical Education, HCST embarked on its second journey. Besides
+        Technical field, HCST offered F.Sc
+        Pre-Medical, F.Sc Pre-Engineering, F.Sc Computer Science, Degree Programs B.Ed, M.Ed, M.Sc/BS HPE, ADE,
+        DDM,
+        JDPE, Diploma in computer
+        science (DIT), Short courses in computer, office automation, autocad etc. HCST is now planning to start BS
+        Urdu,
+        BS HPE, BS Education etc after the
+        approval of the Sarhad University.</p>
+    </div>
+    <div class="about-html">
+        <form action="about.html">
+            <a href="about.html">Explore More</a>
+        </form>
+    </div>
+    </div>
+    <div class="vision-mission-container">
+        <div class="our-vizion">
+            <h3>Our Vision</h3>
+            <p>We are committed to provide quality education and aspire to be the best educational institution
+                in the region.</p>
+        </div>
+        <div class="Mission">
+            <h3>Our Mission</h3>
+            <p>
+                <li>To provide a conducive environment for learning.</li>
+                <li>To provide conventional and vocational/technical education.</li>
+                <li>To equip students with the best possible knowledge and produce individuals with moral and religious
+                    values.</li>
+                <li>To produce skilled manpower for the betterment of humanity.</li>
+                <li>To set an example for contemporary institutions to be followed.</li>
+            </p>
+        </div>
+    </div>
+
+    </div>
+    </div>
+    <h1 class="h1122">
+        Why we are different?
+    </h1>
+    <p class="para5">
+        We encourage students to develop team building skills, communication, determination and leadership. We focus on
+        students, well being and happiness by providing them all that they need.
+    </p>
+
+    <section class="facilities">
+        <h2>Our Facilities</h2>
+        <div class="facility">
+            <i class="fas fa-desktop"></i> <!-- Computer Lab Icon -->
+            <h3>Computer Lab</h3>
+            <p>All campuses of HGSCS are equipped with the latest digital technologies and computers.</p>
+        </div>
+        <div class="facility">
+            <i class="fas fa-futbol"></i> <!-- Cocurricular Activities Icon -->
+            <h3>Cocurricular Activities</h3>
+            <p>HGSCS offers cocurricular activities among students which makes them physically and mentally strong and
+                healthy.</p>
+        </div>
+        <div class="facility">
+            <i class="fas fa-book"></i> <!-- Books & Library Icon -->
+            <h3>Books & Library</h3>
+            <p>HGSCS campuses are rich with the latest books in libraries.</p>
+            <!-- <hr class="2211" > -->
+        </div>
+
+    </section>
+    
+    <H1 class="h12">News</H1> <a href="imgs.html">
+        <img class="imgbanner" src="banner.png" alt="Banner"></a>
+    <h1 class="open1"> Addmation Open</h1>
+    <div id="btn2"></div>
+    <div id="btn2">
+        <form action="addmisition.html">
+            <button>
+                Admission Now
+            </button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.getElementById('loading');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 1000); // Adjust the duration as needed
+        });
+
+        document.getElementById('hamburger').addEventListener('click', function () {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+<div class="contact-info">
+    <!-- <h3>Our Location</h3> -->
+    <style>
+        .map-container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            display: flex;
+
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                /* display: none; */
+                height: auto;
+            }
+        }
+
+        .map-container h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .secondmap {
+                display: none;
+            }
+        }
+
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+        }
+
+
+        .footer {
+            background-color: #071f52;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            padding: 10px;
+            min-width: 200px;
+        }
+
+        .footer-section h2,
+        .footer-section h3 {
+            margin-top: 0;
+        }
+
+        .footer-section p {
+            margin: 10px 0;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin: 10px 0;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #1d3eaa;
+            color: #fff;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .footer-section button:hover {
+            background-color: #ecaf29;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        footer h2 {
+            font-size: 18px;
+            max-width: 296px;
+        }
+
+        footer p {
+            font-size: 15px;
+        }
+
+        .footer-bottom a {
+            color: #ecaf29;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+
+        footer-section p {
+            width: 145px;
+        }
+
+        .secondmap {
+            margin-left: 45px;
+            max-width: 11145px;
+
+        }
+
+        .contact-info {
+            margin-left: 45px;
+        }
+        @media screen and (max-width: 768px)
+         {
+            .content-info h3 {
+            font-size: 12px; 
+            }
+        }
+
+        .h33 {
+            /* width: 134px; */
+            margin-left: 23px;
+        }
+        .about-html{
+            margin-left: 12px;
+        }
+        /* .box img {
+            height: auto;
+            min-width:45px;
+            margin-bottom: 0%;  */
+    </style>
+    </head>
+
+    <body>
+
+
+
+</div>
+<div class="contact-info">
+    <h3>Contact Information</h3>
+    <p><i class="fas fa-map-marker-alt"></i> Address: 123 School Lane, City, Country</p>
+    <p><i class="fas fa-phone-alt"></i> Phone: +123456789</p>
+    <p><i class="fas fa-envelope"></i> Email: <a
+            href="mailto:info@himalayagroupschools.com">info@himalayagroupschools.com</a></p>
+</div>
+</div>
+
+<h3 class="h33">Find Us on the Map</h3>
+<div class="map-container">
+    <div style="flex: 1;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192.8329707286923!2d72.30892781950102!3d34.165184780643716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dec3986c5e7e8d%3A0x523c8b2bda90b2b0!2sHimalaya%20Group%20of%20Schools%20and%20Colleges%20Swabi%20(Dagai%20Campus)!5e0!3m2!1sen!2s!4v1692019631731!5m2!1sen!2s"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <!-- Second Map: Himalaya College Swabi -->
+    <div style="flex: 1;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193.27617359351037!2d72.34563922812236!3d34.21099047046661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38deeb2345d9325d%3A0x2a93104f3e1c83bd!2sHimalaya%20College%20Swabi!5e0!3m2!1sen!2s!4v1692019871695!5m2!1sen!2s"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
+<script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+        document.getElementById('navbar').classList.toggle('active');
+        this.classList.toggle('active');
+    });
+</script>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2>HIMALAYA GROUP OF SCHOOL</h2>
+            <p>Himalaya Degree College of Science and Technology (HCST) started its journey in 2013 under the
+                capable and dynamic supervision of Mr. Sikandar Hayat. The objective behind this revolutionary
+                step was to impart quality education especially in the field of Science and Technology, in this
+                deprived area of KPK.</p>
+        </div>
+        <div class="footer-section contact">
+            <h3>Contact Us</h3>
+            <ul>
+                <li>Email: <a href="mailto:info@yourcompany.com">info@Himalaya.com</a></li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: Swabi - Mardan Rd, Colonel Sher Kalay, Swabi, Khyber Pakhtunkhwa</li>
+            </ul>
+        </div>
+        <div class="footer-section social">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">YouTube</a></li>
+            </ul>
+        </div>
+        <div class="footer-section quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section newsletter">
+
+            <p>Addmission Open Play Group To College</p>
+            <form action="addmisition.html">
+                <button type="submit">Addmission Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Himalaya Group of School. All rights reserved. | <a href="#">Terms of Use</a> | <a
+                href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map Embed</title>
+    <script>
+        /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <audio id="bg-music" preload="auto">
+        <source src="ElevenLabs_2024-11-11T13_23_26_Brian_pre_s50_sb75_se0_b_m2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bgMusic = document.getElementById("bg-music");
+            let isAudioPlayed = false;  // Flag to track if the audio has already played
+    
+            // Function to attempt to play the audio
+            const playAudio = async () => {
+                if (isAudioPlayed) return;  // Don't play the audio again if it's already played
+    
+                try {
+                    await bgMusic.play();
+                    console.log("Audio is playing in the background.");
+                    isAudioPlayed = true;  // Set the flag to true after the audio plays once
+                } catch (error) {
+                    console.log("Autoplay was blocked. Awaiting user interaction to start audio.");
+                    // If autoplay is blocked, add a click event listener on the body to start the audio
+                    document.body.addEventListener("click", () => {
+                        if (!isAudioPlayed) {
+                            bgMusic.play().then(() => {
+                                console.log("Audio started after user interaction.");
+                                isAudioPlayed = true;  // Set the flag after the audio plays once
+                            }).catch(err => console.log("Error starting audio:", err));
+                        }
+                    }, { once: true }); // Listener runs only once
+                }
+    
+                // Ensure the audio doesn't loop
+                bgMusic.onended = () => {
+                    console.log("Audio has finished playing.");
+                };
+            };
+    
+            playAudio();
+        });
+    </script>
+    
+    

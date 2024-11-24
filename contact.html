@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f4f8;
+        }
+
+        /* Loading Screen Styles */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        #loading img {
+            width: 150px;
+            height: 150px;
+            animation: rotate 1s linear infinite;
+        }
+        @media screen and (max-width: 700px) {
+            #loading{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+          
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(220deg);
+            }
+        }
+
+        .email {
+            background-color: #071f52;
+            font-size: 16px;
+            padding: 15px;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .email a {
+            text-decoration: none;
+            color: #ffffff;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .email a:hover {
+            color: #ffcc00;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #080107;
+            padding: 1px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            max-height: 60px;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin: 0 8px;
+        }
+
+        .navbar a {
+            color: #071f52;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            margin-top: 0px;
+        }
+
+        .navbar a:hover {
+            /* color: #ffffff; */
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 15px;
+        }
+
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #071f52;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #ffffff;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .hamburger.active div:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .navbar .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar .hamburger.active div:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
+        }
+        @media screen and (max-width: 700px) {
+            .contact-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+          
+        }
+        .contact-form {
+            flex: 1;
+            margin-right: 20px;
+            max-width: 600px;
+        }
+
+        .contact-form h1 {
+            margin-top: 0;
+            color: #071f52;
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #071f52;
+            box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+        }
+
+        .contact-form button {
+            padding: 12px 20px;
+            /* background-color: #071f52; */
+            color: #3d3a3a;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: transparent;
+            background-color: #dbb612;
+            color: black;
+            transform: scale(1.05);
+            /* padding: 15px 24px; */
+            font-size: 18px;
+            box-shadow: 9px 8px 23px rgb(125, 129, 99);
+
+        }
+
+        .contact-info {
+            flex: 1;
+            max-width: 350px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            color: #071f52;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .contact-info iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .contact-info iframe:hover {
+            transform: scale(1.05);
+        }
+
+      
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        .h111{
+            margin-top: 23px;
+            background-color: #071f52;
+            color: #ffffff;
+            text-align: left;
+            font-size: 34px;
+            padding: 61px;
+            margin: 20px 0;
+            /* border-radius: 10px; */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+
+        @media (max-width: 768px) {
+            .h111 {
+                font-size: 24px;
+                padding: 23px   ;
+            }
+        }
+        .h111 p{
+            font-size:22px;
+            margin-top: 0pc;
+        }
+
+         
+    .footer {
+                    background-color: #071f52;
+                    color: #fff;
+                    padding: 40px 20px;
+                    text-align: center;
+                }
+
+                .footer-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .footer-section {
+                    flex: 1;
+                    padding: 10px;
+                    min-width: 200px;
+                }
+
+                .footer-section h2,
+                .footer-section h3 {
+                    margin-top: 0;
+                }
+
+                .footer-section p {
+                    margin: 10px 0;
+                }
+
+                .footer-section ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .footer-section ul li {
+                    margin: 10px 0;
+                }
+
+                .footer-section a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                .footer-section a:hover {
+                    text-decoration: underline;
+                }
+
+                .footer-section form {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .footer-section input {
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                }
+
+                .footer-section button {
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #1d3eaa;
+                    color: #fff;
+                    transition: 0.4s;
+                    cursor: pointer;
+                }
+
+                .footer-section button:hover {
+                    background-color: #ffae00;
+                }
+
+                .footer-bottom {
+                    margin-top: 20px;
+                    font-size: 14px;
+                }
+                
+                footer h2 {
+                    font-size: 23px;
+                    max-width: 296px;
+                }
+
+                footer p {
+                    font-size: 19px;
+                }
+
+                .footer-bottom a {
+                    color: #ffae00;
+                    text-decoration: none;
+                }
+
+                .footer-bottom a:hover {
+                    text-decoration: underline;
+                }
+
+                @media (max-width: 768px) {
+                    .footer-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .footer-section {
+                        text-align: center;
+                    }
+                }
+                footer-section p{
+                    width: 145px;
+                }         .dropbtn {
+        color: #071f52;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 8px 12px;
+        /* border-radius: 5px; */
+        /* transition: color 0.3s ease, background-color 0.3s ease; */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: 0.4s;
+        animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        margin-top: 0px;
+
+    }
+
+    .dropbtn:hover {
+        color: #071f52;
+        background-color: transparent;
+        text-shadow: 9px 19px 34px black;
+        font-size: 17px;
+    }
+
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover,
+    .dropbtn:focus {
+        background-color: transparent
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <img src="img/himalaya.jfif" alt="Loading...">
+    </div>
+
+    <div class="email">
+        <a href="mailto:info@himalaya.com">Email: info@himalaya.com</a>
+        <a href="tel:03459499721">Phone: 03459499721</a>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img width="122" src="img/himalaya-removebg-preview.png" alt="[School Name] Logo">
+        </div>
+        <nav class="navbar">
+            <ul id="nav-links">
+                <li><a href="navbar for school.html">Home</a></li>
+                <li><a href="directors-message.html">Director's Message</a></li>
+                <li><a href="galy.html">Gallery</a></li>
+                <li><a href="addmisition.html">Admissions</a></li>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">About Us</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="about.html">About Us</a>
+                        <a href="News.html">News</a>
+                            <a href="Board.html">Board Marks</a>
+                            <a href="Teachers.html">Teachers</a>
+                    </div>
+                </div>
+                </li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    <div class="h111">
+        <h1>Contact Us <p>Keep in Touch</p> </h1>
+    </div>
+    <div class="contact-container">
+        <div class="contact-form">
+            <h1>Contact Us</h1>
+            <form action="process_form.php" method="post">
+                <label for="first-name">First-Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="last-name">Last-Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="Age">Age</label>
+                <input type="number" id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button class="submit1" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> info@himalaya.com</p>
+            <p><strong>Phone:</strong> 03459499721</p>
+            <p><strong>Himalay Group of School & Colleges System Dagai Compus Swabi:</strong></p>
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192.8329707286923!2d72.30892781950102!3d34.165184780643716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dec3986c5e7e8d%3A0x523c8b2bda90b2b0!2sHimalaya%20Group%20of%20Schools%20and%20Colleges%20Swabi%20(Dagai%20Campus)!5e0!3m2!1sen!2s!4v1692019631731!5m2!1sen!2s"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.getElementById('loading');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 1000); // Adjust the duration as needed
+
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', function () {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+<div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>HIMALAYA GROUP OF SCHOOL</h2>
+                <p>Himalaya Degree College of Science and Technology (HCST) started its journey in 2013 under the
+                    capable and dynamic supervision of Mr. Sikandar Hayat. The objective behind this revolutionary
+                    step was to impart quality education especially in the field of Science and Technology, in this
+                    deprived area of KPK.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: <a href="mailto:info@yourcompany.com">info@Himalaya.com</a></li>
+                    <li>Phone: (123) 456-7890</li>
+                    <li>Address: Swabi - Mardan Rd, Colonel Sher Kalay, Swabi, Khyber Pakhtunkhwa</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section newsletter">
+                
+                <p>Addmission Open Play Group To College</p>
+                <form action="addmisition.html">
+                    <button type="submit">Addmission Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Himalaya Group of School. All rights reserved. | <a href="#">Terms of Use</a> | <a
+                    href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+</div>
+</html>
+<script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

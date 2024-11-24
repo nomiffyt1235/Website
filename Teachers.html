@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        /* email */
+        .email {
+            background-color: #071f52;
+            font-size: 14px;
+            padding: 12px;
+            color: #fff;
+            text-align: center;
+            margin-top: 22px;
+        }
+
+        .email a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+            font-size: 10px;
+        }
+
+        .email a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header and Navigation Bar (removed) */
+        .h11 {
+            margin-top: 0px;
+            background-color: #071f52;
+            color: #ffffff;
+            text-align: start;
+            padding: 80px;
+            /* border-radius: 18px; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 63px;
+        }
+
+        .h11 p {
+            font-size: 20px;
+            margin-top: 0px;
+        }
+
+        .h22 {
+            font-size: 40px;
+            margin-left: 12px;
+            text-decoration: dotted;
+            text-decoration: underline;
+        }
+
+        /* imgs */
+        #imgs img {
+            height: auto;
+            width: 30rem;
+            margin-right: 0%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .h11 {
+                font-size: 43px;
+                /* max-width: 150px; */
+                /* margin-right: 12px; */
+                padding: 34px;
+            }
+
+            .h11 p {
+                font-size: 16px;
+            }
+
+            #imgs img {
+                height: auto;
+                width: 300px;
+                margin: 0px auto;
+                align-items: center;
+                display: flex;
+            }
+
+        }
+
+        /* Loading Screen Styles */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading img {
+            width: 150px;
+            /* Adjust the size of the loading image as needed */
+            height: auto;
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(220deg);
+            }
+        }
+
+        /* Hide the loading screen */
+        .hidden {
+            display: none;
+        }
+
+
+
+        header {
+            background-color: #ffffff;
+            color: #080107;
+            padding: 1px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            max-height: 60px;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            margin-top: 0px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: #071f52;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            /* padding: 8px 12px; */
+            border-radius: 5px;
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        }
+
+        .navbar a:hover {
+            /* color: #ffffff; */
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 17px;
+        }
+
+
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #071f52;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #ffffff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar ul li a {
+                padding: 10px;
+            }
+
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .hamburger.active div:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .navbar .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar .hamburger.active div:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+
+
+
+        .footer {
+            background-color: #071f52;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            padding: 10px;
+            min-width: 200px;
+        }
+
+        .footer-section h2,
+        .footer-section h3 {
+            margin-top: 0;
+        }
+
+        .footer-section p {
+            margin: 10px 0;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin: 10px 0;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #1d3eaa;
+            color: #fff;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .footer-section button:hover {
+            background-color: #ffbb00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        footer h2 {
+            font-size: 23px;
+            max-width: 296px;
+        }
+
+        footer p {
+            font-size: 19px;
+        }
+
+        .footer-bottom a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                font-size: 13px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-container h2 {
+                font-size: 13px;
+                align-items: start;
+                /* width: 12px; */
+            }
+
+            .footer-container p {
+                font-size: 12px;
+                width: 250px;
+
+            }
+
+            .footer-bottom p {
+                font-size: 13px;
+            }
+        }
+
+
+        footer-section p {
+            width: 145px;
+        }
+
+        .dropbtn {
+            color: #071f52;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 12px;
+            /* border-radius: 5px; */
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            margin-top: 0px;
+
+        }
+
+        .dropbtn:hover {
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 17px;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: transparent
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+
+        .spain {
+            align-items: center;
+            margin: 0px auto;
+            /* display: flex; */
+            /* flex-direction: column; */
+            align-items: center;
+            /* box-shadow: 9px 1px 13px; */
+            margin-bottom: 7vh;
+            width: 600px;
+
+        }
+
+        .spain .box1 {
+            /* padding: 12px 12px; */
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+
+        .spain img {
+            width: 570px;
+            border-radius: 12px;
+            /* display: flex; */
+            /* flex-direction: row; */
+        }
+        @media screen and (max-width: 768px) {
+          .spain img{
+            width: 339px;
+          }
+          .spain{
+            width: 200px;
+          }
+          .box2 p{
+            margin: 0px;
+          }
+          .box2 {
+            width: 342px;
+          }
+        }
+        .box2 h1 {
+            margin-top: 0px;
+            margin-left: 12px;
+            font-family: serif;
+        }
+
+        .box2 p {
+            margin-top: 0px;
+            margin-left: 12px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #727477;
+            margin-right: 12px;
+        }
+        .btn3,.btn4{
+            margin-left: 23px;
+            margin-top: 12px;
+        }
+        .btn4 {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #007BFF; /* Text color */
+            background-color: transparent; /* Transparent background initially */
+            border: 2px solid #007BFF; /* Border color */
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative; /* Position relative for pseudo-element */
+            overflow: hidden; /* Ensure the pseudo-element is contained within the button */
+            transition: color 0.3s ease; /* Smooth transition for text color */
+        }
+        
+        /* Pseudo-element for the fill effect */
+        .btn4::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #007BFF; /* Fill color */
+            transition: transform 0.3s ease;
+            transform: translateY(100%); /* Start hidden below the button */
+            z-index: 0; /* Behind the text */
+        }  /* Button hover effect */
+        .btn4:hover {
+            color: #fff;
+        }
+
+        .btn4:hover::before {
+            transform: translateY(0); /* Slide up to fill the button */
+        }
+
+        /* Ensure the text stays on top of the pseudo-element */
+        .btn4 span {
+            position: relative; /* Ensure it appears above the pseudo-element */
+            z-index: 1;
+        }.btn3  {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #007BFF; /* Text color */
+            background-color: transparent; /* Transparent background initially */
+            border: 2px solid #007BFF; /* Border color */
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative; /* Position relative for pseudo-element */
+            overflow: hidden; /* Ensure the pseudo-element is contained within the button */
+            transition: color 0.3s ease; /* Smooth transition for text color */
+        }
+        
+        /* Pseudo-element for the fill effect */
+        .btn3::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #007BFF; /* Fill color */
+            transition: transform 0.3s ease;
+            transform: translateY(100%); /* Start hidden below the button */
+            z-index: 0; /* Behind the text */
+        }  /* Button hover effect */
+        .btn3:hover {
+            color: #fff;
+            z-index: 111;
+        }
+
+        .btn3:hover::before {
+            transform: translateY(0); /* Slide up to fill the button */
+        }
+
+        /* Ensure the text stays on top of the pseudo-element */
+        .btn3  span{
+            position: relative; /* Ensure it appears above the pseudo-element */
+        
+        }
+        @media screen and (max-width: 768px) {
+          .btn3,.btn4{
+            font-size: 12px;
+            margin-bottom: 12px;
+          }
+        }
+        .teacher1 p {
+        font-size: 12px;
+    }
+
+    .teacher1 {
+        background-color: #071f52;
+        color: white;
+        padding: 45px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 23px;
+    }
+    @media screen and (max-width: 768px) {
+        .teacher1{
+            padding: 12px;
+            margin-left: 0px;
+            margin-bottom: 23px;
+        }
+        .teacher1 h1{
+            font-size: 32px;
+        }
+      
+    }
+
+
+        
+
+    </style>
+</body>
+<!-- Loading Screen -->
+<div id="loading" class="loading">
+    <img src="img/himalaya.jfif" alt="Loading...">
+</div>
+
+<!-- Email Section -->
+<div class="email">
+    <a href="#">Email: Himalaya</a>
+    <a href="#">Phone: 03459499721</a>
+</div>
+<header>
+    <div class="logo">
+        <img width="122" src="img/himalaya-removebg-preview.png" alt="Himalaya Logo">
+    </div>
+    <nav class="navbar">
+        <ul id="nav-links">
+            <li><a href="navbar for school.html">Home</a></li>
+            <li><a href="directors-message.html">Director's Message</a></li>
+            <li><a href="galy.html">Gallery</a></li>
+            <li><a href="addmisition.html">Admissions</a></li>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">About Us</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="about.html">About Us</a>
+                    <a href="News.html">News</a>
+                    <a href="Board.html">Board Marks</a>
+                    <a href="Teachers.html">Teachers</a>
+
+                </div>
+            </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+</header>
+<div class="teacher1">
+   <h1>Teachers</h1><p>Male Teachers/Female Teachers</p> 
+</div>
+<form action="Teachers.html">
+<button class="btn3"> <span>Male Teachers</span> </button></form>
+<form action="Female.html"> <button class="btn4"> <span>Female Teachers</span> </button></form>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Samad Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Shzad Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Wakas Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Intkhab Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Khedayat Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Abrar Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Awais Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Abudullah Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+<div class="spain">
+    <div class="box1"><img width="380px" src="img/img5.jpg" alt=""></div>
+    <div class="box2">
+        <h1>Nved Sir</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis praesentium ad vel
+            expedita placeat officia consectetur eligendi, in recusandae, maxime debitis sequi neque quibusdam ducimus
+            soluta perferendis, nam ipsa.</p>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2>HIMALAYA GROUP OF SCHOOL</h2>
+            <p>Himalaya Degree College of Science and Technology (HCST) started its journey in 2013 under the
+                capable and dynamic supervision of Mr. Sikandar Hayat. The objective behind this revolutionary
+                step was to impart quality education especially in the field of Science and Technology, in this
+                deprived area of KPK.</p>
+        </div>
+        <div class="footer-section contact">
+            <h3>Contact Us</h3>
+            <ul>
+                <li>Email: <a href="mailto:info@yourcompany.com">info@Himalaya.com</a></li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: Swabi - Mardan Rd, Colonel Sher Kalay, Swabi, Khyber Pakhtunkhwa</li>
+            </ul>
+        </div>
+        <div class="footer-section social">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">YouTube</a></li>
+            </ul>
+        </div>
+        <div class="footer-section quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section newsletter">
+
+            <p>Addmission Open Play Group To College</p>
+            <form action="addmisition.html">
+                <button type="submit">Addmission Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Himalaya Group of School. All rights reserved. | <a href="#">Terms of Use</a> | <a
+                href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loadingScreen = document.getElementById('loading');
+
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+        }, 1000); // Show the content after 1 second
+
+    });
+    document.getElementById('hamburger').addEventListener('click', function () {
+        this.classList.toggle('active');
+        document.getElementById('nav-links').classList.toggle('active');
+    });
+
+</script>
+</body>
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

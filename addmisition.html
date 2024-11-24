@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himalaya Group of Schools</title>
+    <style>
+        /* Loading Screen Styles */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 150px;
+            /* Adjust size as needed */
+            height: 150px;
+            /* Adjust size as needed */
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(280deg);
+            }
+        }
+
+        .email {
+            background-color: #071f52;
+            font-size: 14px;
+            padding: 12px;
+            color: #fff;
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        .email a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .email a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header and Navigation Bar */
+        header {
+            background-color: #ffffff;
+            color: #080107;
+            padding: 1px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo img {
+            max-height: 60px;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            margin: 0 8px;
+        }
+
+        .navbar a {
+            color: #071f52;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            /* transition: color 0.3s ease, background-color 0.3s ease; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: 0.4s;
+            animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            margin-top: 0px;
+        }
+
+        .navbar a:hover {
+            /* color: #ffffff; */
+            color: #071f52;
+            background-color: transparent;
+            text-shadow: 9px 19px 34px black;
+            font-size: 15px;
+        }
+
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #071f52;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #ffffff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar ul li a {
+                padding: 10px;
+            }
+
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .hamburger.active div:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .navbar .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar .hamburger.active div:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        /* New Styles for Admission Form */
+        .admission-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .admission-form h2 {
+            color: #071f52;
+            margin-bottom: 20px;
+        }
+
+        .admission-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .admission-form input,
+        .admission-form select,
+        .admission-form textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .admission-form button {
+            /* background-color: #071f52; */
+            color: #696464;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            /* transition: background-color 0.3s ease; */
+            transition: 0.5s;
+        }
+
+        .admission-form button:hover {
+            /* background-color: #0a2e6b; */
+            background-color: #ffbb00;
+            color: #071f52;
+            text-shadow: 19px 19px 39px black;
+            /* box-shadow: 9px 9px 23px black; */
+            font-size: 21px;
+        }
+
+        .footer {
+                    background-color: #071f52;
+                    color: #fff;
+                    padding: 40px 20px;
+                    text-align: center;
+                }
+
+                .footer-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .footer-section {
+                    flex: 1;
+                    padding: 10px;
+                    min-width: 200px;
+                }
+
+                .footer-section h2,
+                .footer-section h3 {
+                    margin-top: 0;
+                }
+
+                .footer-section p {
+                    margin: 10px 0;
+                }
+
+                .footer-section ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .footer-section ul li {
+                    margin: 10px 0;
+                }
+
+                .footer-section a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                .footer-section a:hover {
+                    text-decoration: underline;
+                }
+
+                .footer-section form {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .footer-section input {
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                }
+
+                .footer-section button {
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #1d3eaa;
+                    color: #fff;
+                    transition: 0.4s;
+                    cursor: pointer;
+                }
+
+                .footer-section button:hover {
+                    background-color: #ffbb00;
+                }
+
+                .footer-bottom {
+                    margin-top: 20px;
+                    font-size: 14px;
+                }
+                
+                footer h2 {
+                    font-size: 23px;
+                    max-width: 296px;
+                }
+
+                footer p {
+                    font-size: 19px;
+                }
+
+                .footer-bottom a {
+                    color: #ff6600;
+                    text-decoration: none;
+                }
+
+                .footer-bottom a:hover {
+                    text-decoration: underline;
+                }
+
+                @media (max-width: 768px) {
+                    .footer-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .footer-section {
+                        text-align: center;
+                    }
+                }
+                footer-section p{
+                    width: 145px;
+                }
+        .social-media a {
+            font-size: 1.2em;
+        }
+
+        .h11 {
+            background-color: #071f52;
+            color: #fff;
+            padding: 45px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: block;
+            font-size: 26px;
+        }
+        @media screen and (max-width: 768px) {
+           .h11{
+            font-size: 17px;
+            text-align: left;
+           }
+          
+        }
+
+        .h4 {
+            width: 650px;
+            display: flex;
+            flex-direction: column;
+            margin: 70px auto;
+            box-shadow: 2px 1px 8px #5e5e5f;
+            height: 40vh;
+            border-radius: 21px;
+            transition: 0.6s;
+        }
+
+        .h4:hover{
+            width: 750px;
+            font-size: 24px;
+            overflow: scroll;   
+
+        }
+
+        .h4 h1 {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #071f52;
+            color: #ffffff;
+            /* width: 40vw; */
+        }
+
+        .h4 p {
+            margin-left: 12px;
+            max-width: 574px;
+        }
+        @media screen and (max-width: 768px) {
+            .h4 h1{
+                font-size:21px;
+            }
+            .h4{
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                width: 500px;
+                max-width: 300px;
+                overflow: scroll;
+                font-size: 19px;
+            }
+            .h4:hover{
+                width: 300;
+                
+            }
+          
+        }
+        .dropbtn {
+        color: #071f52;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 8px 12px;
+        /* border-radius: 5px; */
+        /* transition: color 0.3s ease, background-color 0.3s ease; */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: 0.4s;
+        animation: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        margin-top: 0px;
+
+    }
+
+    .dropbtn:hover {
+        color: #071f52;
+        background-color: transparent;
+        text-shadow: 9px 19px 34px black;
+        font-size: 17px;
+    }
+
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover,
+    .dropbtn:focus {
+        background-color: transparent
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <img class="loader" src="img/himalaya.jfif" alt="Loading...">
+    </div>
+
+    <div class="email">
+        <a href="#">Email: Himalaya</a>
+        <a href="#">Phone: 03459499721</a>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img width="122" src="img/himalaya-removebg-preview.png" alt="Himalaya Logo">
+        </div>
+        <nav class="navbar">
+            <ul id="nav-links">
+                <li><a href="navbar for school.html">Home</a></li>
+                <li><a href="directors-message.html">Director's Message</a></li>
+                <li><a href="galy.html">Gallery</a></li>
+                <li><a href="addmisition.html">Admissions</a></li>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">About Us</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="about.html">About Us</a>
+                        <a href="News.html">News</a>
+                        <a href="Board.html">Board Marks</a>
+                        <a href="Teachers.html">Teachers</a>
+
+                    </div>
+                </div>
+                </li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    <div class="h11">
+        <h1>Admissions Form</h1>
+    </div>
+    <div class="admission-form">
+        <h2>Admission Form</h2>
+        <form action="addmissionsubmit.html" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="previous_class">Previous Class:</label>
+            <input type="text" id="previous_class" name="previous_class" required>
+
+            <label for="course">Course:</label>
+            <select id="course" name="course" required>
+                <option value="">Select Course</option>
+                <option value="computer_science">Computer Science</option>
+                <option value="engineering">Engineering</option>
+                <option value="business">Business</option>
+                <!-- Add more courses as needed -->
+            </select>
+
+            <label for="message">Additional Information:</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="h4">
+        <h1>Our Admission Policy</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sint, reiciendis quaerat quisquam
+            molestiae error minima quas architecto aspernatur, neque cum libero distinctio sapiente dolorum? Consequatur
+            voluptatibus recusandae exercitationem at tenetur, ipsa rerum quaerat Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Mollitia architecto illum fugit suscipit dolorum adipisci ex. Cum neque
+            inventore repellat ut doloribus corrupti eos esse aliquid facere rem non voluptas tenetur veritatis officia
+            beatae assumenda, molestiae reprehenderit, corporis omnis minima labore? Velit, animi voluptatem!.</p>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>HIMALAYA GROUP OF SCHOOL</h2>
+                <p>Himalaya Degree College of Science and Technology (HCST) started its journey in 2013 under the
+                    capable and dynamic supervision of Mr. Sikandar Hayat. The objective behind this revolutionary
+                    step was to impart quality education especially in the field of Science and Technology, in this
+                    deprived area of KPK.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: <a href="mailto:info@yourcompany.com">info@Himalaya.com</a></li>
+                    <li>Phone: (123) 456-7890</li>
+                    <li>Address: Swabi - Mardan Rd, Colonel Sher Kalay, Swabi, Khyber Pakhtunkhwa</li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section newsletter">
+                
+                <p>Addmission Open Play Group To College</p>
+                <form action="addmisition.html">
+                    <button type="submit">Addmission Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Himalaya Group of School. All rights reserved. | <a href="#">Terms of Use</a> | <a
+                    href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingScreen = document.getElementById('loading');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 1000); // Adjust the duration as needed
+        });
+
+        document.getElementById('hamburger').addEventListener('click', function () {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html><script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

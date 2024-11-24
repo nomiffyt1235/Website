@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصویرy اور متن</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="img/images.jfif" alt="تصویر" class="image">
+        <div class="text">
+            <p>یہ کچھ متن ہے جو تصویر کے دائیں طرف czczczczzzzظاہر ہوگا۔</p>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    max-width: 50%; /* یا آپ اپنے ضرورت کے مطابق یہاں width مقرر کریں */
+    margin-right: 10px;
+}
+
+.text {
+    display: none; یہ سی ایس ایس کلاس آپ کو تصویر کے دائیں طرف متن چھپانے کے لیے استعمال ہوگی
+}
+
+.container img {
+    order: 1;
+}
+
+.container .text {
+    order: 2;
+}
+
+</style>

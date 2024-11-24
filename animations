@@ -1,0 +1,153 @@
+<main>
+  <div class="wrapper">
+    <article class="flow">
+      <h1>Honouring reduced motion preference</h1>
+      <figure class="callout">
+        <p>
+          Toggle the checkbox to see how you can reduce motion, but still present a nice animation.
+        </p>
+      </figure>
+      <label>
+        Reduce animation
+
+        <input type="checkbox" role="switch" id="animation-checkbox" />
+      </label>
+      <div class="container">
+        <div class="card" tabIndex="0">
+          <div class="box face front flow">
+            <h2>Lorem Ipsum Dolor</h2>
+            <img src="https://source.unsplash.com/SVVCP23JFyg/200x100" alt="Coloured smoke">
+            <p>by Author Name</p>
+          </div>
+          <div class="face back">
+            <button>Read More</button>
+          </div>
+        </div>
+
+        <div class="card" tabIndex="0">
+          <div class="box face front flow">
+            <h2>Lorem Ipsum Dolor</h2>
+            <img src="https://source.unsplash.com/E8Ufcyxz514/200x100" alt="Coloured waves">
+            <p>by Author Name</p>
+          </div>
+          <div class="face back">
+            <button>Read More</button>
+          </div>
+        </div>
+
+        <div class="card" tabIndex="0">
+          <div class="box face front flow">
+            <h2>Lorem Ipsum Dolor</h2>
+            <img src="https://source.unsplash.com/y2lCFKGZEXI/200x100" alt="More coloured smoke">
+            <p>by Author Name</p>
+          </div>
+          <div class="face back">
+            <button>Read More</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</main><style>
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 1rem;
+  max-width: 700px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  height: 280px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.face {
+  --flow-space: 1rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 1px solid cornflowerblue;
+  backface-visibility: hidden;
+}
+
+.back {
+  display: grid;
+  place-items: center;
+  background: cornflowerblue;
+  transform: rotateY(180deg);
+}
+
+.card:focus,
+.card:focus-within,
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+button {
+  border: 1px solid white;
+  background: none;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: lighter;
+  padding: 1rem;
+  transition-duration: 0.25s;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background: white;
+  color: cornflowerblue;
+}
+
+
+.reduce-motion .back {
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 0.6s;
+  transform: none;
+}
+
+.reduce-motion .card:focus,
+.reduce-motion .card:focus-within,
+.reduce-motion .card:hover {
+  transform: none;
+}
+
+.reduce-motion .card:focus .back,
+.reduce-motion .card:focus-within .back,
+.reduce-motion .card:hover .back {
+  opacity: 1;
+  pointer-events: all;
+  transform: none;
+}
+
+
+label { display: block;}
+
+h2 { 
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+</style><script>
+    const checkbox = document.getElementById('animation-checkbox');
+
+checkbox.addEventListener('change', () => {
+  if (checkbox.checked) {
+    document.querySelector('.container').classList.add('reduce-motion')
+  } else {
+    document.querySelector('.container').classList.remove('reduce-motion')
+  }
+})
+
+</script>
